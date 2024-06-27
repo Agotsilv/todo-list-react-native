@@ -1,12 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { config } from '@gluestack-ui/config';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { useFonts } from 'expo-font';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import Login from './src/screens/Login';
+import { AuthProvider } from './src/config/auth';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    JostBlack: require('./src/assets/fonts/Jost-Black.ttf'),
+    JostBold: require('./src/assets/fonts/Jost-Bold.ttf'),
+    JostMedium: require('./src/assets/fonts/Jost-Medium.ttf'),
+    JostRegular: require('./src/assets/fonts/Jost-Regular.ttf'),
+  });
+
+  if (!fontsLoaded) return <ActivityIndicator />;
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AuthProvider>
+      <GluestackUIProvider config={config}>
+        <Login />
+      </GluestackUIProvider>
+    </AuthProvider>
   );
 }
 
