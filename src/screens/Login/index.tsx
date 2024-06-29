@@ -2,10 +2,15 @@ import { EyeIcon, EyeOffIcon, FormControl, Heading, HStack, Input, InputField, I
 import { Container } from "./style";
 import { useContext, useEffect, useState } from "react";
 import ButtonProps from "../../components/Button";
-import { Keyboard } from "react-native";
+import { Keyboard, TouchableOpacity } from "react-native";
 import AuthContext from "../../config/auth";
+import { Button } from "@gluestack-ui/themed";
+import { ButtonText } from "@gluestack-ui/themed";
+import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
+  const navigation: NativeStackNavigationProp<any, any> = useNavigation();
   const { signIn } = useContext(AuthContext);
   const [user, setUser] = useState<iUser>({
     email: "",
@@ -57,13 +62,13 @@ export default function Login() {
               <Text fontFamily="JostRegular" color="white" lineHeight="$xs">
                 Email:
               </Text>
-              <Input height={50} $active-borderColor="$white" $focus-borderColor="white" >
+              <Input height={50} $active-borderColor="$white" $focus-borderColor="white" bg="$white" >
                 <InputField
                   defaultValue={user.email}
                   onChangeText={(value: string) => setUser((prevState) => ({
                     ...prevState,
                     email: value,
-                  }))} type="text" color="white" fontFamily="JostRegular" fontSize={18} />
+                  }))} type="text" color="#101025" fontFamily="JostRegular" fontSize={18} />
               </Input>
             </VStack>
 
@@ -71,18 +76,18 @@ export default function Login() {
               <Text fontFamily="JostRegular" color="white" lineHeight="$xs">
                 Senha:
               </Text>
-              <Input height={50} $active-borderColor="$white" $focus-borderColor="white">
+              <Input height={50} $active-borderColor="$white" $focus-borderColor="white" bg="$white">
                 <InputField
                   defaultValue={user.password}
                   onChangeText={(value: string) => setUser((prevState) => ({
                     ...prevState,
                     password: value,
                   }))}
-                  color="white" fontFamily="JostRegular" type={showPassword ? "text" : "password"} fontSize={18} />
+                  color="#101025" fontFamily="JostRegular" type={showPassword ? "text" : "password"} fontSize={18} />
                 <InputSlot pr="$4" onPress={handleState}>
                   <InputIcon
                     as={showPassword ? EyeIcon : EyeOffIcon}
-                    color="$white"
+                    color="#101025"
                   />
                 </InputSlot>
               </Input>
@@ -97,11 +102,11 @@ export default function Login() {
       </HStack>
 
       <HStack justifyContent="center" alignItems="center" paddingLeft={60} paddingRight={60} marginTop={10} >
-        <Text fontFamily="JostRegular" color="$white" textAlign="center">Organize seu dia!
-          Cadastre-se agora para começar.</Text>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => navigation.navigate('createUser')}>
+          <Text fontFamily="JostRegular" color="$white" textAlign="center">Organize seu dia!</Text>
+          <Text fontFamily="JostRegular" color="#acacf3" textAlign="center" fontWeight={"$thin"}>Clique aqui e cadastre-se agora para começar.</Text>
+        </TouchableOpacity>
       </HStack>
-
-
     </Container>
   )
 }
