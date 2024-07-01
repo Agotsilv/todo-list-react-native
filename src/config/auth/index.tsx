@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useEffect, useState } from "react";
+import Toast from 'react-native-toast-message';
 import api from "../api";
+import React from 'react';
 
 type IProps = {
  children: React.ReactElement;
@@ -50,7 +52,17 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({
 
  const signIn = async ({ email, password }: ISignIn) => {
   if (email === '' && password === '') {
-   console.log('Error')
+   Toast.show({
+    type: 'error',
+    text1: 'Atenção!',
+    text2: 'Por favor, preencha os campos.',
+    text2Style: {
+     fontSize: 14
+    },
+    text1Style: {
+     fontSize: 14
+    }
+   });
   } else {
    await api.post('/auth', {
     email,
@@ -83,6 +95,8 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({
    }}
   >
    {children}
+   <Toast />
+
   </AuthContext.Provider>
  );
 
