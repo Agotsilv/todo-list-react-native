@@ -6,6 +6,8 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { AuthProvider } from './src/config/auth';
 import AuthRoutes from './src/routes/auth.routes';
 import { NavigationContainer } from '@react-navigation/native';
+import Router from './src/routes'
+import React from 'react';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -21,7 +23,7 @@ export default function App() {
     <AuthProvider>
       <GluestackUIProvider config={config}>
         <NavigationContainer>
-          <AuthRoutes />
+          <Router />
         </NavigationContainer>
       </GluestackUIProvider>
     </AuthProvider>

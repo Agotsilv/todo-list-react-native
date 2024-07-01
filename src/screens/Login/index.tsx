@@ -8,6 +8,13 @@ import { Button } from "@gluestack-ui/themed";
 import { ButtonText } from "@gluestack-ui/themed";
 import { NativeStackNavigationProp } from "react-native-screens/lib/typescript/native-stack/types";
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
+
+interface iUser {
+  email: string;
+  password: string;
+}
+
 
 export default function Login() {
   const navigation: NativeStackNavigationProp<any, any> = useNavigation();
@@ -98,7 +105,7 @@ export default function Login() {
       </HStack>
 
       <HStack width="100%" justifyContent="center" alignItems="center" >
-        <ButtonProps title="Entrar" onPress={handleSubmit} />
+        <ButtonProps title="Entrar" onPress={() => handleSubmit()} />
       </HStack>
 
       <HStack justifyContent="center" alignItems="center" paddingLeft={60} paddingRight={60} marginTop={10} >
