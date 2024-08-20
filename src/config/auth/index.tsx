@@ -1,14 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useEffect, useState } from "react";
 import api from "../api";
+import { useNavigation } from '@react-navigation/native';
 
 type IProps = {
  children: React.ReactElement;
 }
 
 type User = {
- token: string;
- nome: string;
+ email: string;
+ password: string;
 }
 
 type AuthContextData = {
@@ -16,8 +17,7 @@ type AuthContextData = {
  user: User | null;
  token: string;
  signIn({ email, password }: ISignIn): Promise<void>;
- AlertSignOut(): void;
- loading: boolean;
+ register({ email, password }: ISignIn): Promise<void>;
 }
 
 interface ISignIn {
@@ -30,46 +30,56 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider: React.FunctionComponent<IProps> = ({
  children,
 }: IProps) => {
+ const navigation: any = useNavigation();
+
  const [user, setUser] = useState<User | null>(null);
  const [token, setToken] = useState('');
 
- // useEffect(() => {
- //  async function loadStorageData() {
- //   const storageUser = await AsyncStorage.getItem('@RNAuth:user');
- //   const storageToken = await AsyncStorage.getItem('@RNAuth:token');
+ useEffect(() => {
+  async function loadStorageData() {
+   const storageUser: any = await AsyncStorage.getItem('@RNAuth:user');
 
- //   if (storageUser && storageToken) {
- //    setUser(JSON.parse(storageUser));
- //    setToken(storageToken);
- //   }
- //  }
+   if (storageUser) {
+    setUser(storageUser)
+   }
+  }
 
- //  loadStorageData()
- // }, [])
+  loadStorageData()
+ }, [])
 
+ const register = async ({ email, password }: ISignIn): Promise<void> => {
+  if (email && password) {
+
+   AsyncStorage.setItem('@RNAuth:user', JSON.stringify({ email, password }));
+
+   setUser({
+    email: email,
+    password: password
+   })
+
+   navigation.navigate('Login')
+
+  } else {
+   console.log('error')
+  }
+  return Promise.resolve();
+ }
 
  const signIn = async ({ email, password }: ISignIn) => {
   if (email === '' && password === '') {
-   console.log('Error')
+
+   console.log('Error');
   } else {
-   await api.post('/auth', {
-    email,
-    password
-   }).then((response) => {
-    if (response.data) {
-     const { token, user } = response.data;
+   const storageUser: any = await AsyncStorage.getItem('@RNAuth:user');
 
-     setToken(token)
-     setUser(user)
+   console.log("storageUser", storageUser)
 
-     // Salva o usuário atualizado no AsyncStorage
-     AsyncStorage.setItem('@RNAuth:user', JSON.stringify(user));
-
-     // Salva o token de acesso
-     AsyncStorage.setItem('@RNAuth:token', token);
-
-    }
+   setUser({
+    email: storageUser.email,
+    password: storageUser.password
    })
+
+   // Lógica de autenticação pode ser implementada aqui
   }
  }
 
@@ -78,14 +88,14 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({
    value={{
     signed: !!user,
     user,
+    token,
     signIn,
-
+    register,
    }}
   >
    {children}
   </AuthContext.Provider>
  );
-
 }
 
 export default AuthContext;

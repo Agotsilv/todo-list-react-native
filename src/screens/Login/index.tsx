@@ -2,10 +2,12 @@ import { EyeIcon, EyeOffIcon, FormControl, Heading, HStack, Input, InputField, I
 import { Container } from "./style";
 import { useContext, useEffect, useState } from "react";
 import ButtonProps from "../../components/Button";
-import { Keyboard } from "react-native";
+import { Keyboard, TouchableOpacity } from "react-native";
 import AuthContext from "../../config/auth";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
+  const navigation: any = useNavigation();
   const { signIn } = useContext(AuthContext);
   const [user, setUser] = useState<iUser>({
     email: "",
@@ -96,9 +98,11 @@ export default function Login() {
         <ButtonProps title="Entrar" onPress={handleSubmit} />
       </HStack>
 
-      <HStack justifyContent="center" alignItems="center" paddingLeft={60} paddingRight={60} marginTop={10} >
-        <Text fontFamily="JostRegular" color="$white" textAlign="center">Organize seu dia!
-          Cadastre-se agora para começar.</Text>
+      <HStack justifyContent="center" alignItems="center" paddingLeft={60} paddingRight={60} marginTop={120} >
+        <TouchableOpacity onPress={() => navigation.navigate('RegisterUser')}>
+          <Text fontFamily="JostRegular" color="$white" textAlign="center">Clique aqui e começe a organize seu dia!
+            Cadastre-se agora para começar.</Text>
+        </TouchableOpacity>
       </HStack>
 
 
