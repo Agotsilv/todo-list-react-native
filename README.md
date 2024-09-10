@@ -37,10 +37,12 @@ npm install
 expo start
 ```
 
-📱 Funcionalidades futuras
+## 📱 Funcionalidades futuras
 
 - Edição de tarefas.
 - Filtrar tarefas por status (concluídas ou pendentes).
+
+## 📷 Imagens
 
 <h1 align="center">
   <div style="display: flex; flex-direction: row; align: center;" align="center">
