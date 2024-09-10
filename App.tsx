@@ -6,6 +6,7 @@ import { ActivityIndicator } from 'react-native';
 import { AuthProvider } from './src/config/auth';
 import { NavigationContainer } from '@react-navigation/native';
 import AppNavigator from './src/config/routes';
+import React from 'react';
 
 export default function App() {
   const [fontsLoaded] = useFonts({

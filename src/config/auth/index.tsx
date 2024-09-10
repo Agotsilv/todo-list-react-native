@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useEffect, useState } from "react";
 import api from "../api";
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 type IProps = {
  children: React.ReactElement;
@@ -15,9 +16,11 @@ type User = {
 type AuthContextData = {
  signed: boolean;
  user: User | null;
+ setUser: User | null;
  token: string;
  signIn({ email, password }: ISignIn): Promise<void>;
  register({ email, password }: ISignIn): Promise<void>;
+ logout(): Promise<void>;
 }
 
 interface ISignIn {
@@ -40,7 +43,7 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({
    const storageUser: any = await AsyncStorage.getItem('@RNAuth:user');
 
    if (storageUser) {
-    setUser(storageUser)
+    setUser(JSON.parse(storageUser))
    }
   }
 
@@ -60,34 +63,54 @@ export const AuthProvider: React.FunctionComponent<IProps> = ({
    navigation.navigate('Login')
 
   } else {
-   console.log('error')
+   Alert.alert('Error', 'Por favor, insira o email e a senha.')
   }
   return Promise.resolve();
  }
 
- const signIn = async ({ email, password }: ISignIn) => {
-  if (email === '' && password === '') {
-
-   console.log('Error');
+ const signIn = async ({ email, password }: ISignIn): Promise<void> => {
+  if (email === '' || password === '') {
+   Alert.alert('Error', 'Por favor, insira o email e a senha.');
   } else {
-   const storageUser: any = await AsyncStorage.getItem('@RNAuth:user');
+   try {
+    const storageUser = await AsyncStorage.getItem('@RNAuth:user');
+    if (storageUser) {
+     const parsedUser = JSON.parse(storageUser);
 
-   console.log("storageUser", storageUser)
+     console.log('Stored User:', parsedUser);
+     console.log('Input Email:', email);
+     console.log('Input Password:', password);
 
-   setUser({
-    email: storageUser.email,
-    password: storageUser.password
-   })
-
-   // Lógica de autenticação pode ser implementada aqui
+     if (email === parsedUser.email && password === parsedUser.password) {
+      setUser({
+       email: parsedUser.email,
+       password: parsedUser.password
+      });
+     } else {
+      Alert.alert('Error', 'Por favor, Email ou senha inválido!');
+     }
+    } else {
+     Alert.alert('Error', 'Nenhum usuário encontrado!');
+    }
+   } catch (error) {
+    console.error('Error during sign in:', error);
+    Alert.alert('Error', 'Ocorreu um erro ao tentar realizar o login.');
+   }
   }
- }
+ };
+
+
+ const logout = async (): Promise<void> => {
+  setUser(null);
+  navigation.navigate('Login');
+ };
 
  return (
   <AuthContext.Provider
    value={{
     signed: !!user,
     user,
+    logout,
     token,
     signIn,
     register,

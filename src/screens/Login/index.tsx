@@ -5,6 +5,7 @@ import ButtonProps from "../../components/Button";
 import { Keyboard, TouchableOpacity } from "react-native";
 import AuthContext from "../../config/auth";
 import { useNavigation } from "@react-navigation/native";
+import React from "react";
 
 export default function Login() {
   const navigation: any = useNavigation();
@@ -49,7 +50,7 @@ export default function Login() {
     <Container>
 
       <HStack width='100%' alignItems="center" justifyContent="center" marginTop={keyboardOpen ? 100 : 150}>
-        <Text fontFamily="JostMedium" color="$white" fontSize={60}> Todolist </Text>
+        <Text fontFamily="JostMedium" color="$white" fontSize={60}> MyTasks </Text>
       </HStack>
 
       <HStack width='100%' paddingLeft={20} paddingRight={20} marginTop={40}>
