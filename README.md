@@ -22,6 +22,7 @@ O **Todo List App** é uma aplicação mobile desenvolvida em **React Native**, 
 - **Expo**: Ferramenta para facilitar o desenvolvimento e build do app.
 
 ## 🔧 Instalação e Execução
+
 ```bash
 1.Clone este repositório:
 git clone https://github.com/Agotsilv/todo-list-react-native.git
@@ -37,6 +38,17 @@ expo start
 ```
 
 📱 Funcionalidades futuras
+
 - Edição de tarefas.
 - Filtrar tarefas por status (concluídas ou pendentes).
 
+<h1 align="center">
+  <div style="display: flex; flex-direction: row; align: center;" align="center">
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/1.jpg" />
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/2.jpg" />
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/3.jpg" />
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/4.jpg" />
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/5.jpg" />
+    
+  <div>
+</h1>
