@@ -1,3 +1,4 @@
+import React from "react";
 import { HStack, Button, ButtonText } from "@gluestack-ui/themed";
 import { TouchableOpacityProps } from "react-native";
 

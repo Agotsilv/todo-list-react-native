@@ -48,9 +48,9 @@ expo start
   <div style="display: flex; flex-direction: row; align: center;" align="center">
     <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/1.jpg" />
     <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/2.jpg" />
-    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/3.jpg" />
-    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/4.jpg" />
-    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/5.jpg" />
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/new_screen_home.png" />
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/new_screen_home_finalizado.png" />
+    <img width="200" style="border-radius: 10px" height="auto" alt="Screenshot" title="Screenshot" src="assets/imgApp/modal add task.png" />
     
   <div>
 </h1>
