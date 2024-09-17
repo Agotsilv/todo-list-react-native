@@ -1,8 +1,8 @@
-# Todo List App
+# MyTasks
 
 ## 📋 Descrição
 
-O **Todo List App** é uma aplicação mobile desenvolvida em **React Native**, projetada para ajudar os usuários a organizar suas tarefas diárias. Ele permite criar e gerenciar tarefas, visualizar as tarefas registradas e marcar como concluídas. O app também oferece funcionalidades de login e registro de usuário, garantindo que as tarefas sejam exclusivas para cada usuário.
+O **MyTasks** é uma aplicação mobile desenvolvida em **React Native**, projetada para ajudar os usuários a organizar suas tarefas diárias. Ele permite criar e gerenciar tarefas, visualizar as tarefas registradas e marcar como concluídas. O app também oferece funcionalidades de login e registro de usuário, garantindo que as tarefas sejam exclusivas para cada usuário.
 
 ## 🚀 Funcionalidades
 
@@ -36,12 +36,6 @@ npm install
 4.Execute o projeto:
 expo start
 ```
-
-## 📱 Funcionalidades futuras
-
-- Edição de tarefas.
-- Filtrar tarefas por status (concluídas ou pendentes).
-
 ## 📷 Imagens
 
 <h1 align="center">
